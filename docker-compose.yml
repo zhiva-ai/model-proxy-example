@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  proxy_server:
+    image: zhivaai/model-proxy
+    container_name: zhiva_proxy
+    restart: always
+    volumes:
+      - ./zhiva.crt:/usr/src/app/zhiva.crt
+      - ./zhiva.key:/usr/src/app/zhiva.key
+      - ./models.json:/usr/src/app/build/models.json
+      - ./servers.json:/usr/src/app/build/servers.json
+    network_mode: "host"
