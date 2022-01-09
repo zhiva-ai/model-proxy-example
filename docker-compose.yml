@@ -3,7 +3,7 @@ services:
   proxy_server:
     image: zhivaai/model-proxy
     container_name: zhiva_proxy
-    restart: always
+    restart: unless-stopped
     volumes:
       - ./zhiva.crt:/usr/src/app/zhiva.crt
       - ./zhiva.key:/usr/src/app/zhiva.key
