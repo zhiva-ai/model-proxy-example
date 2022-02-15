@@ -1,7 +1,8 @@
 {
   "1d9508dd-9089-40c3-abdd-15f47120d682": {
-    "uri": "http://localhost:8011/pacs-endpoint/predict",
+    "uri": "http://localhost:8011/segmentation",
     "supports": ["/studies/series"],
-    "task": "segmentation"
+    "task": "segmentation",
+    "statusUri": "http://localhost:8011"
   }
 }

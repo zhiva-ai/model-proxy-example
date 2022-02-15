@@ -10,3 +10,5 @@ services:
       - ./models.json:/usr/src/app/build/models.json
       - ./servers.json:/usr/src/app/build/servers.json
     network_mode: "host"
+    environment:
+      - ZHIVA_SHOW_STATUS_PAGE=true
