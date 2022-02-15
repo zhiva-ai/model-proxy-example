@@ -21,13 +21,15 @@ Keeps all definitions of available pacs servers. It has to be a valid dicomweb s
 {
   [{uuidv4}]: {
     "uri": string ("https://valid.server.uri/to/dicomweb"),
-    "isDefault": boolean (default false)
+    "isDefault": boolean (default false),
+    "statusUri": string ("https://valid.server.uri/to/status/page")
   }
 }
 ```
 
 - `uri` - URI of dicomweb server
-- `isDefault` - boolean which indicates the default server used when request doesn't specify the `uuidv4` value. __One server should have this set to `true`.__
+- `isDefault` - boolean which indicates the default server used when request doesn't specify the `uuidv4` value. **One server should have this set to `true`.**
+- `statusUri` - (optional)URI to status page. This can be any page accessible through **GET** request that returns stats **200** if server is working correctly. If you don't have any specific page, you can just point to list of studies: `https://valid.server.uri/to/dicomweb/studies`.
 
 ## models.json (add model API)
 
@@ -40,7 +42,8 @@ Stores all definitions of inference models. Each model might be available for di
   [{uuidv4}]: {
     "uri": string ("https://valid.model.uri/to/inference"),
     "task": string ("segmentation" | "annotation" | "prediction"),
-    "supports": Array<string> (list of supported paths, eg. ["/studies/series"])
+    "supports": Array<string> (list of supported paths, eg. ["/studies/series"]),
+    "statusUri": (optional) string ("https://valid.model.uri/to/status/page")
   }
 }
 ```
@@ -48,8 +51,20 @@ Stores all definitions of inference models. Each model might be available for di
 - `uri` - URI of the inference model API (eg. `http://localhost:8011/predict`)
 - `task` - Task which model performs (one of `segmentation` | `annotation` | `prediction`)
 - `supports` - List of available paths that model supports:
+
 ```shell
 /studies
 /studies/series
 /studies/series/instances
+```
+
+- `statusUri` - URI to status page. This can be any page accessible through **GET** request that returns stats **200** if model is working correctly.
+
+## Status check
+
+After defining your models and servers you can check if all of them are available through proxy. This is possible by accessing `https://localhost:8002/status` page. This page is only visible when your `docker-compose.yml` configuration has `ZHIVA_SHOW_STATUS_PAGE` variable set to `true`:
+
+```yaml
+    environment:
+      - ZHIVA_SHOW_STATUS_PAGE=true
 ```
