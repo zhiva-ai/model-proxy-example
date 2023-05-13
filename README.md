@@ -7,7 +7,7 @@ Proxy serwer that manages models and uses dicom servers to prepare inference req
 > Generate local certificate before start [Use this guide](https://docs.zhiva.ai/latest/setting-up-local-pacs#generate-local-tsl-certificate-only-once-every-365-days)
 
 ```shell
-docker-compose up
+docker compose up
 ```
 
 ## servers.json (add DICOMweb server)
