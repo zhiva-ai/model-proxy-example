@@ -1,8 +1,8 @@
 {
   "1d9508dd-9089-40c3-abdd-15f47120d682": {
-    "uri": "http://localhost:8011/segmentation",
+    "uri": "http://lung_model_api:8011/segmentation",
     "supports": ["/studies/series"],
     "task": "segmentation",
-    "statusUri": "http://localhost:8011"
+    "statusUri": "http://lung_model_api:8011"
   }
 }

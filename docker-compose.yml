@@ -5,10 +5,20 @@ services:
     container_name: zhiva_proxy
     restart: unless-stopped
     volumes:
+      - ./log:/usr/src/app/build/log
       - ./zhiva.crt:/usr/src/app/zhiva.crt
       - ./zhiva.key:/usr/src/app/zhiva.key
       - ./models.json:/usr/src/app/build/models.json
       - ./servers.json:/usr/src/app/build/servers.json
-    network_mode: "host"
+    ports:
+      - "8002:8002"
     environment:
       - ZHIVA_SHOW_STATUS_PAGE=true
+    networks:
+      - pacs-network
+      - model-network
+networks:
+  pacs-network:
+    name: pacs-shared-network
+  model-network:
+    name: model-shared-network

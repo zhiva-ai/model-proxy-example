@@ -1,8 +1,10 @@
 {
   "b1407f18-575d-487c-bc0c-640c6da651bc": {
-    "uri": "https://localhost/zhiva/pacs",
+    "uri": "https://production_nginx:443/zhiva/pacs",
     "isDefault": true,
-    "statusUri": "https://localhost/zhiva/pacs/studies",
-    "authType": ""
+    "statusUri": "https://production_nginx:443/zhiva/pacs/studies",
+    "authType": "basicAuth",
+    "login": "zhiva",
+    "password": "3$yc$XYQhSA55bJf"
   }
 }
